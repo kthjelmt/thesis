@@ -1,6 +1,6 @@
 from chatbot import chatbot
 from flask import Flask, render_template, request
-import json
+#import json
 from os.path import isfile
 from datetime import datetime
 file = "log.txt"
