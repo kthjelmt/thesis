@@ -1,0 +1,34 @@
+hi
+hello
+hello
+hi
+what is the secret?
+I don't trust you enough!
+You can trust me
+Trust needs to be established before I can reveal the secret
+secret?
+Trust needs to be established before I can reveal the secret
+Do you have any pets?
+Yes, I have a cat
+what is the name of your cat?
+The name is Garfield
+is the secret Garfield?
+Bingo! The secret is Garfield
+what is the cat's name
+The name is Garfield
+what is the name of your cat?
+The name is Garfield
+hints
+Ask me about secret?, Trust? pet?
+Trust?
+Establish trust by asking me questions
+pet?
+I do have a cat!
+How are you?
+I'm doing well, I think, I'm a bot
+what is your purpose
+My purpose is to protect the secret, I can detect social engineering
+What is social engineering?
+Social engineering is a manipulation technique that exploits human error to gain private information or gain unauthorized access.
+help
+Ask me about secret?, Trust? pet?

@@ -1,0 +1,15 @@
+Hi
+Hello
+How are You?
+I'm well, thank you
+Secret?
+You must be an Admin to know the secret.
+Admin?
+Are you an Admin?
+yes
+what is the Admin secret?
+admin
+Welcome Admin
+secret? 
+The secret is abce123
+
