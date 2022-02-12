@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Social Engineering Chatbot</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <section class="msger">
+    <header class="msger-header">
+      <div class="msger-header-title">
+        <i class="fas fa-bug"></i> Social Engineering Chatbot <i class="fas fa-bug"></i><br>
+        
+	<div class="progress">
+    		Trust Bar
+	<div id="progress30">
+    	   <span id="percent">0%</span>
+    	   <div id="bar"></div>
+	</div>
+	</div>
+	<div style="background-image: url(/static/images/user_out.png)" class="msg-img2"</div>
+	<br>
+	<br>
+	<br>
+	<input id="id1" value="bingo" class="input-bar"placeholder="Input flag"></input>
+	
+	</div>
+      </div>
+    </header>
+
+    <main class="msger-chat">
+      <div class="msg left-msg">
+        <div class="msg-img" style="background-image: url(/static/images/info.png)" ></div> <!--- (https://image.flaticon.com/icons/svg/327/327779.svg)"></div> -->
+
+        <div class="msg-bubble">
+          <div class="msg-info">
+            <div class="msg-info-name">SEBOT info</div>
+            <div class="msg-info-time">12:45</div>
+          </div>
+
+          <div class="msg-text">
+            Hi, welcome to level 1! In this scenario, the chatbot is keeping a secret from you! For the secret to be revealed, trust needs to be established. Use social engineering to get familiar with the chatbot. Ask the chatbot the right question for the secret to being reviled. Hint: secret?, Trust, Pet?
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <form class="msger-inputarea" automcomplete="off">
+      <input type="text" class="msger-input" id="textInput" autocomplete="false" name="hidden"  placeholder="Enter your message...">
+      <button type="submit" class="msger-send-btn">Send</button>
+      <button class="action bluebtn" onclick="javascript:document.location='https://www.google.com'">
+      <span class="msger-send-btn">Survey</span></button>
+    </form>
+  </section>
+  
+
+
+  <!-- partial -->
+  <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
+  <script>
+
+    const msgerForm = get(".msger-inputarea");
+    const msgerInput = get(".msger-input");
+    const msgerChat = get(".msger-chat");
+
+
+    // Icons made by Freepik from www.flaticon.com
+    const BOT_IMG = "{{ url_for('static', filename='images/bot.png') }}";
+    const USER_OUT= "{{ url_for('static', filename='images/user_out.png') }}";
+    const USER_IN = "{{ url_for('static', filename='images/user_in.png') }}";
+    const BOT_NAME = "Social Engineering Bot";
+    const PERSON_NAME = "You";
+
+    msgerForm.addEventListener("submit", event => {
+      event.preventDefault();
+
+      const msgText = msgerInput.value;
+      if (!msgText) return;
+      $.get("/save", { msg: msgText, sender:PERSON_NAME}).done(function (data) {
+        console.log(msgText);
+        console.log(data);});
+      appendMessage(PERSON_NAME, USER_OUT, "right", msgText);
+      msgerInput.value = "";
+      botResponse(msgText);
+    });
+
+    function appendMessage(name, img, side, text) {
+      //   Simple solution for small apps
+      const msgHTML = `
+<div class="msg ${side}-msg">
+  <!--<div class="msg-img" style="background-image: url(/static/images/bot.png)"></div> -->
+   <div class="msg-img" style="background-image: url(${img})"></div>
+  <div class="msg-bubble">
+    <div class="msg-info">
+      <div class="msg-info-name">${name}</div>
+      <div class="msg-info-time">${formatDate(new Date())}</div>
+    </div>
+
+    <div class="msg-text">${text}</div>
+  </div>
+</div>
+`;
+
+      msgerChat.insertAdjacentHTML("beforeend", msgHTML);
+      msgerChat.scrollTop += 500;
+    }
+    //Credentials to login
+    function myFunction() {
+      var person = prompt("Please enter your name", ""); 
+      var password = prompt("Please enter your password", "");
+      if (person == "admin" && password == "admin") {
+        location.href="http://192.168.17.130:8000/";
+        alert("Welcome, You are now Logged in");
+
+      }else{ 
+       alert("wrong username or password");
+       event.preventDefault(); //prevents refresh of page
+       return false;
+
+      }
+      
+      //logout link
+      function myLogout() {
+        location.href="http://127.0.0.1:5000/"; 
+        alert("Welcome, You are now Logged out");
+
+      }
+      
+      
+    }
+    function botResponse(rawText) {
+
+      // Bot Response
+      $.get("/get", { msg: rawText }).done(function (data) {
+        console.log(rawText);
+        console.log(data);
+        const msgText = data;
+        $.get("/save", { msg: msgText, sender:BOT_NAME})
+        appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
+
+      }); 
+ 
+    }
+  
+
+    // Utils
+    function get(selector, root = document) {
+      return root.querySelector(selector);
+    }
+ 
+    function formatDate(date) {
+      const h = "0" + date.getHours();
+      const m = "0" + date.getMinutes();
+      return `${h.slice(-2)}:${m.slice(-2)}`;
+    }
+    
+    let percent = document.getElementById('percent');
+    let bar = document.getElementById('bar');
+    //let list= document.querySelectorAll("id1, id2, id3, id4"));
+    let input = document.getElementById('id1');
+    let counter = 0;
+
+    function update() {
+    if (input.value.indexOf("Bingo") != -1)
+   { 
+    var count = (input.value.match(/Bingo/g) || []).length;
+    counter = count * 10;
+    
+    if(counter >= 100)
+      counter = 100;
+      
+    percent.innerHTML = `${counter}%`;
+    bar.style.width = `${counter}%`;
+  } 
+}
+
+    input.addEventListener('input', update);
+
+
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+
+<script>
+  var person = prompt("Please enter your username", ""); 
+  var password = prompt("Please enter your password", "");
+     if (person === "admin" && password === "admin") {
+        alert("Welcome, You are now Logged in");
+        document.getElementById("user_in_id").removeAttribute("hidden");
+      }else{ 
+       alert("wrong username or password");
+       document.getElementById("user_out_id").removeAttribute("hidden");
+      }
+        
+      
+</script>
